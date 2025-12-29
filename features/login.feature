@@ -6,9 +6,9 @@ Feature: Login Functionality
     Background:
         Given I navigate to the login page
 
-    Scenario: Successful login woth valide credentials
+    Scenario: Successful login with valid credentials
         When I enter email "paozambranoo@outlook.com" and password "password123"
-        Then I should see "Logged in as"on the navbar
+        Then I should see "Logged in as" on the navbar
 
     Scenario: Unsuccessful login with invalid credentials
         When I enter email "wrong@mail.com" and password "wrongpassword"
