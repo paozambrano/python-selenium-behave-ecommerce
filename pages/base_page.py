@@ -20,3 +20,7 @@ class BasePage:
 
     def get_text(self, locator):
         return self.find(locator).text
+    
+    def handle_alert(self):
+        alert = self.driver.switch_to.alert
+        alert.accept()
