@@ -7,9 +7,22 @@ class ProductPage(BasePage):
     SEARCH_BUTTON = (By.ID, "submit_search")
     ALL_PRODUCTS_TITLE = (By.CSS_SELECTOR, ".features_items h2.title")
     PRODUCT_ITEMS = (By.CLASS_NAME, "single-products")
+    PRODUCT_LIST = (By.CLASS_NAME, "features_items")
+
+    VIEW_PRODUCT_FIRST = (By.XPATH, '(//a[text()="View Product"])[1]')
+
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".product-information h2")
+    PRODUCT_CATEGORY = (By.XPATH, "//p[contains(text(), 'Category')]")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, ".product-information span span")
+    PRODUCT_AVAILABILITY = (By.XPATH, "//b[text()='Availability:']/..")
+    PRODUCT_CONDITION = (By.XPATH, "//b[text()='Condition:']/..")
+    PRODUCT_BRAND = (By.XPATH, "//b[text()='Brand:']/..")
 
     def go_to_products(self):
         self.click(self.PRODUCTS_NAV_BUTTON)
+
+    def click_first_product(self):
+        self.click(self.VIEW_PRODUCT_FIRST)
 
     def search_for_product(self, product_name):
         self.type(self.SEARCH_INPUT, product_name)
@@ -21,3 +34,13 @@ class ProductPage(BasePage):
     def is_product_visible(self):
         products = self.driver.find_elements(*self.PRODUCT_ITEMS)
         return len(products) > 0 
+    
+    def get_product_details(self):
+        return{
+            "name": self.get_text(self.PRODUCT_NAME),
+            "category": self.get_text(self.PRODUCT_CATEGORY),
+            "price": self.get_text(self.PRODUCT_PRICE),
+            "availability": self.get_text(self.PRODUCT_AVAILABILITY),
+            "condition": self.get_text(self.PRODUCT_CONDITION),
+            "brand": self.get_text(self.PRODUCT_BRAND)
+        }
