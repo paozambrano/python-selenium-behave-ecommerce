@@ -18,6 +18,12 @@ class ProductPage(BasePage):
     PRODUCT_CONDITION = (By.XPATH, "//b[text()='Condition:']/..")
     PRODUCT_BRAND = (By.XPATH, "//b[text()='Brand:']/..")
 
+    FIRST_PRODUCT = (By.CSS_SELECTOR, ".single-products")
+    FIRST_PRODUCT_ADD_TO_CART = (By.CSS_SELECTOR, ".overlay-content a[data-product-id='1']")
+    SECOND_PRODUCT_ADD_TO_CART = (By.CSS_SELECTOR, ".overlay-content a[data-product-id='2']")
+    CONTINUE_BUTTON = (By.CSS_SELECTOR, ".btn-success.close-modal")
+    VIEW_CART_LINK = (By.XPATH, "//u[text()='View Cart']")
+
     def go_to_products(self):
         self.click(self.PRODUCTS_NAV_BUTTON)
 
@@ -44,3 +50,16 @@ class ProductPage(BasePage):
             "condition": self.get_text(self.PRODUCT_CONDITION),
             "brand": self.get_text(self.PRODUCT_BRAND)
         }
+    
+    def add_first_product(self):
+        self.hover_over(self.FIRST_PRODUCT)
+        self.click(self.FIRST_PRODUCT_ADD_TO_CART)
+
+    def add_second_product(self):
+        self.click(self.SECOND_PRODUCT_ADD_TO_CART)
+
+    def continue_shopping(self):
+        self.click(self.CONTINUE_BUTTON)
+
+    def view_cart(self):
+        self.click(self.VIEW_CART_LINK)
