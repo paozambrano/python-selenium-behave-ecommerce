@@ -1,5 +1,6 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
 
 class BasePage:
     def __init__(self, driver):
@@ -24,3 +25,7 @@ class BasePage:
     def handle_alert(self):
         alert = self.driver.switch_to.alert
         alert.accept()
+
+    def hover_over(self, locator):
+        element = self.find(locator)
+        ActionChains(self.driver).move_to_element(element).perform()
