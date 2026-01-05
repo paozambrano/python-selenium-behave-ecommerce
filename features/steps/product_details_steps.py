@@ -1,10 +1,19 @@
 from behave import then, when
 from pages.product_page import ProductPage
 
+@given('I verify that home page is visible')
+def step_impl(context):
+    assert "Automation Exercise" in context.driver.title
+
+@when('I navigate to the products page')
+def step_impl(context):
+    context.product_page = ProductPage(context.driver)
+    context.product_page.go_to_products()
+
 @then ('I verify user is navigated to "{expected_title}" page successfully')
 def step_impl(context, expected_title):
     actual_title = context.product_page.get_results_title()
-    assert expected_title.upper() in actual_title.upper
+    assert expected_title.upper() in actual_title.upper()
 
 @then ('the products list is visible')
 def step_impl(context):
@@ -16,7 +25,7 @@ def step_impl(context):
 
 @then('I am landed to the product detail page')
 def step_impl(context):
-    assert "product_details" in context.driver.currect_url
+    assert "product_details" in context.driver.current_url
 
 @then('I verify that details are visible: name, category, price, availability, condition, brand')
 def step_impl(context):
