@@ -24,7 +24,7 @@ def step_impl(context):
     items = context.cart_page.get_all_cart_data()
     assert len(items) == 2, f"Expected 2 items, but found {len(items)}"
 
-@then('I verify both products are in the cart')
+@then('I verify prices, quantities, and total prices')
 def step_impl(context):
     items = context.cart_page.get_all_cart_data()
     for item in items:

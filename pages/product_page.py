@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from selenium.webdriver.support import expected_conditions as EC
 
 class ProductPage(BasePage):
     PRODUCTS_NAV_BUTTON = (By.CSS_SELECTOR, 'a[href="/products"]')
@@ -56,6 +57,10 @@ class ProductPage(BasePage):
         self.click(self.FIRST_PRODUCT_ADD_TO_CART)
 
     def add_second_product(self):
+        self.wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, ".modal-content")))
+
+        SECOND_PRODUCT_CARD = (By.XPATH, "(//div[@class='single-products'])[2]")
+        self.hover_over(SECOND_PRODUCT_CARD)
         self.click(self.SECOND_PRODUCT_ADD_TO_CART)
 
     def continue_shopping(self):
