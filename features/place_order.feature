@@ -10,7 +10,7 @@ Feature: Place Order
         Then I verify that cart page is displayed
         When I click "Proceed To Checkout"
         And I click "Register/Login"
-        And I fill signup name "Pao" and email "pao.ts7ff43@mail.com"
+        And I fill signup name "Pao" and email "pao.f43@mail.com"
         And I complete the full registration form
         Then I verify "ACCOUNT CREATED!" is visible
         And I click "Continue" button

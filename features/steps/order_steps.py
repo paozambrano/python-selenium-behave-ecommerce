@@ -40,23 +40,17 @@ def step_impl(context):
 
 @then('I verify "{text}" is visible')
 def step_impl(context, text):
-    # 1. Espera pequeña para que la página se estabilice
     time.sleep(3) 
-    
-    # 2. Intentamos leer todo el texto de la página usando JavaScript (infalible)
-    # Esto obtiene lo que el navegador realmente tiene renderizado
     page_text = context.driver.execute_script("return document.body.innerText")
     
     if text.lower() in page_text.lower():
-        print(f"✅ Texto '{text}' encontrado mediante JS")
+        print(f"✅ Text '{text}' found using JS")
         return
-
-    # 3. Si falla, refrescamos una vez (por si el anuncio bloqueó el renderizado)
     context.driver.refresh()
     time.sleep(3)
     
     final_text = context.driver.execute_script("return document.body.innerText")
-    assert text.lower() in final_text.lower(), f"Error: No se encontró '{text}' incluso tras refresh y JS."
+    assert text.lower() in final_text.lower(), f"Error: '{text}' was not found even after refresh and JS."
 
 @then('I click "Continue" button')
 def step_impl(context):
