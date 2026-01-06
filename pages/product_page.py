@@ -24,6 +24,7 @@ class ProductPage(BasePage):
     SECOND_PRODUCT_ADD_TO_CART = (By.CSS_SELECTOR, ".overlay-content a[data-product-id='2']")
     CONTINUE_BUTTON = (By.CSS_SELECTOR, ".btn-success.close-modal")
     VIEW_CART_LINK = (By.XPATH, "//u[text()='View Cart']")
+    CART_LINK = (By.XPATH, '//*[@id="header"]/div/div/div/div[2]/div/ul/li[3]/a')
 
     def go_to_products(self):
         self.click(self.PRODUCTS_NAV_BUTTON)
@@ -53,8 +54,15 @@ class ProductPage(BasePage):
         }
     
     def add_first_product(self):
+
+        FIRST_PRODUCT_CARD = (By.XPATH, "(//div[@class='single-products'])[1]")
+        element = self.find(FIRST_PRODUCT_CARD)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+
         self.hover_over(self.FIRST_PRODUCT)
-        self.click(self.FIRST_PRODUCT_ADD_TO_CART)
+        
+        OVERLAY_ADD_BTN = (By.XPATH, "(//a[@data-product-id='1'])[2]")
+        self.click(OVERLAY_ADD_BTN)
 
     def add_second_product(self):
         self.wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, ".modal-content")))
@@ -68,3 +76,6 @@ class ProductPage(BasePage):
 
     def view_cart(self):
         self.click(self.VIEW_CART_LINK)
+    
+    def go_to_cart(self):
+        self.click(self.CART_LINK)

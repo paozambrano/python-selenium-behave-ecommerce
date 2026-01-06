@@ -28,4 +28,4 @@ class BasePage:
 
     def hover_over(self, locator):
         element = self.find(locator)
-        ActionChains(self.driver).move_to_element(element).perform()
+        ActionChains(self.driver).move_to_element(element).click().perform()

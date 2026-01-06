@@ -1,6 +1,9 @@
 from behave import when, then
 from pages.product_page import ProductPage
 from pages.cart_page import CartPage
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 @when('I add the first product to the cart')
 def step_impl(context):
@@ -13,6 +16,12 @@ def step_impl(context, button_name):
         context.product_page.continue_shopping()
     elif button_name == "View Cart":
         context.product_page.view_cart()
+    elif button_name == "Cart":
+        context.product_page.go_to_cart()
+    elif button_name == "Proceed To Checkout":
+            context.driver.find_element(By.CSS_SELECTOR, ".check_out").click()
+    elif button_name == "Register/Login":
+        context.driver.find_element(By.XPATH, "//u[text()='Register / Login']").click()
 
 @when('I add the second product to the cart')
 def step_impl(context):

@@ -7,9 +7,7 @@ class CartPage(BasePage):
     PRODUCT_PRICES = (By.CSS_SELECTOR, ".cart_price p")
     PRODUCT_QUANTITIES = (By.CSS_SELECTOR, ".cart_quantity button")
     PRODUCT_TOTALS = (By.CSS_SELECTOR, ".cart_total_price")
-
-    PROCEED_CHECKOUT_BTN = (By.CSS_SELECTOR, ".check_out")
-    REGISTER_LOGIN_LINK = (By.XPATH, "//u[text()='Register / Login']")
+    
     COMMENT_AREA = (By.NAME, "message")
     PLACE_ORDER_BTN = (By.CSS_SELECTOR, 'a[href="/payment"]')
 
