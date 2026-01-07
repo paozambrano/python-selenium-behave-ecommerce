@@ -10,7 +10,7 @@ class ProductPage(BasePage):
     PRODUCT_ITEMS = (By.CLASS_NAME, "single-products")
     PRODUCT_LIST = (By.CLASS_NAME, "features_items")
 
-    VIEW_PRODUCT_FIRST = (By.XPATH, '(//a[text()="View Product"])[1]')
+    VIEW_PRODUCT_FIRST = (By.XPATH, "(//a[text()='View Product'])[1]")
 
     PRODUCT_NAME = (By.CSS_SELECTOR, ".product-information h2")
     PRODUCT_CATEGORY = (By.XPATH, "//p[contains(text(), 'Category')]")
@@ -58,6 +58,7 @@ class ProductPage(BasePage):
             "condition": self.get_text(self.PRODUCT_CONDITION),
             "brand": self.get_text(self.PRODUCT_BRAND)
         }
+        
     
     def add_first_product(self):
 

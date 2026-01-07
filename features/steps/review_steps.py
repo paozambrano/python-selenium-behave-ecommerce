@@ -10,7 +10,3 @@ def step_impl(context):
 @when('I fill the review form with name "{name}", email "{email}" and comment "{comment}"')
 def step_impl(context, name, email, comment):
     context.product_page.fill_review(name, email, comment)
-
-@when('I click "Submit Review"')
-def step_impl(context):
-    context.product_page.submit_review()

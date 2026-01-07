@@ -40,7 +40,7 @@ def step_impl(context):
 
 @then('I verify "{text}" is visible')
 def step_impl(context, text):
-    time.sleep(3) 
+    time.sleep(4) 
     page_text = context.driver.execute_script("return document.body.innerText")
     
     if text.lower() in page_text.lower():

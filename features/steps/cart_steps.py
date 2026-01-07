@@ -22,6 +22,12 @@ def step_impl(context, button_name):
             context.driver.find_element(By.CSS_SELECTOR, ".check_out").click()
     elif button_name == "Register/Login":
         context.driver.find_element(By.XPATH, "//u[text()='Register / Login']").click()
+    elif button_name == "Submit Review":
+        context.product_page.submit_review
+    elif button_name == "Products":
+        context.product_page.go_to_products()
+        if "google_vignette" in context.driver.current_url:
+            context.driver.refresh()
 
 @when('I add the second product to the cart')
 def step_impl(context):
