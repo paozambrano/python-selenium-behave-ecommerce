@@ -26,6 +26,12 @@ class ProductPage(BasePage):
     VIEW_CART_LINK = (By.XPATH, "//u[text()='View Cart']")
     CART_LINK = (By.XPATH, '//*[@id="header"]/div/div/div/div[2]/div/ul/li[3]/a')
 
+    REVIEW_NAME = (By.ID, "name")
+    REVIEW_EMAIL = (By.ID, "email")
+    REVIEW_TEXT = (By.ID, "review")
+    SUBMIT_REVIEW = (By.ID, "button-review")
+    SUCCESS_REVIEW_MSG = (By.CSS_SELECTOR, ".alert-success span")
+
     def go_to_products(self):
         self.click(self.PRODUCTS_NAV_BUTTON)
 
@@ -79,3 +85,13 @@ class ProductPage(BasePage):
     
     def go_to_cart(self):
         self.click(self.CART_LINK)
+
+    def fill_review(self, name, email, text):
+        self.type(self.REVIEW_NAME, name)
+        self.type(self.REVIEW_EMAIL, email)
+        self.type(self.REVIEW_TEXT, text)
+
+    def submit_review(self):
+        element = self.find(self.SUBMIT_REVIEW)
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        element.click()
